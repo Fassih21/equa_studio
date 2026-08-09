@@ -1,0 +1,144 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * Equà Studio design system.
+ * Palette: warm creams, dusty mauve, deep plum, muted gold, oak.
+ * Backgrounds stay light — no dark surfaces anywhere.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-gold: var(--gold);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --shadow-soft: 0 18px 45px -28px oklch(0.452 0.058 349 / 0.35);
+  --shadow-lift: 0 30px 70px -40px oklch(0.452 0.058 349 / 0.45);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* backgrounds */
+  --background: oklch(1 0 0);
+  --offwhite: oklch(0.976 0.007 75);
+  --cream: oklch(0.936 0.019 78);
+
+  /* brand */
+  --primary: oklch(0.452 0.058 349); /* deep plum */
+  --primary-foreground: oklch(0.995 0.002 75);
+  --mauve: oklch(0.653 0.049 349);
+  --sand: oklch(0.79 0.058 78);
+  --gold: oklch(0.716 0.089 80);
+
+  /* text */
+  --foreground: oklch(0.29 0.01 70);
+  --muted-foreground: oklch(0.474 0.014 66);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--offwhite);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--offwhite);
+  --accent: oklch(0.653 0.049 349); /* dusty mauve */
+  --accent-foreground: oklch(0.995 0.002 75);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.9 0.014 76);
+  --input: oklch(0.888 0.016 76);
+  --ring: oklch(0.653 0.049 349);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility surface-warm {
+  background-color: var(--offwhite);
+}
+
+@utility surface-cream {
+  background-color: var(--cream);
+}
+
+@utility text-mauve {
+  color: var(--mauve);
+}
+
+@utility eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  font-weight: 500;
+}
+
+@utility gold-rule {
+  height: 1px;
+  width: 3.5rem;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+@utility fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
