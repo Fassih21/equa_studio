@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
-import { REVIEWS, STUDIO } from "@/lib/studio";
+import { STUDIO } from "@/lib/studio";
+
+const ELFSIGHT_WIDGET_CLASS = "elfsight-app-0cf44976-e743-48f0-8b08-b1bc6244760a";
 
 export function Reviews({ compact = false }: { compact?: boolean }) {
   return (
@@ -18,26 +20,8 @@ export function Reviews({ compact = false }: { compact?: boolean }) {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {REVIEWS.map((r) => (
-            <figure
-              key={r.name}
-              className="flex flex-col rounded-sm border border-border bg-card p-7 shadow-[var(--shadow-soft)]"
-            >
-              <div className="flex gap-1 text-gold">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <Star key={i} className="size-3.5 fill-current" />
-                ))}
-              </div>
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-                “{r.text}”
-              </blockquote>
-              <figcaption className="mt-6 border-t border-border pt-4 text-sm">
-                <span className="font-medium">{r.name}</span>
-                <span className="mt-0.5 block text-xs text-mauve">{r.service}</span>
-              </figcaption>
-            </figure>
-          ))}
+        <div className="mt-10">
+          <div className={ELFSIGHT_WIDGET_CLASS} data-elfsight-app-lazy />
         </div>
       </div>
     </section>

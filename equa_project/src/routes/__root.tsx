@@ -100,6 +100,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap",
       },
     ],
+    scripts: [
+      { src: "https://static.elfsight.com/platform/platform.js", async: true },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -137,4 +140,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-
