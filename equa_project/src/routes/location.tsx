@@ -34,7 +34,7 @@ function LocationPage() {
         <div className="mx-auto max-w-3xl px-5 text-center">
           <p className="eyebrow">Find us</p>
           <h1 className="mt-4 text-4xl md:text-5xl">
-            Ground floor, <span className="text-mauve italic">Park View</span>
+            Ground floor, <span className="text-mauve italic">Bahria Town</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
             We're on the commercial strip in Sector E, Bahria Town — street parking right outside and
