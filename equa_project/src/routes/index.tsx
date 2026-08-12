@@ -46,7 +46,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Skin, hair, brows and bridal artistry in Bahria Town, Lahore. Rated 4.9 by 31 Google reviews. Book on WhatsApp.",
+          "Skin, hair, brows and bridal artistry in Bahria Town, Lahore. Rated 4.9 by 32 Google reviews. Book on WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -242,7 +242,7 @@ function Home() {
           <div>
             <p className="eyebrow">The studio</p>
             <h2 className="mt-3 text-3xl md:text-4xl">
-              A calm, private space on the ground floor of Park View
+              A calm, private space on the ground floor of Bahria Town
             </h2>
             <div className="gold-rule mt-6" />
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:text-base">
