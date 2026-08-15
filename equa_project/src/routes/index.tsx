@@ -16,7 +16,7 @@ import {
   Images,
 } from "lucide-react";
 import heroImg from "@/assets/hero-lash.png";
-import browLash from "@/assets/brow-lash.png";
+
 import reception from "@/assets/studio-reception.jpeg";
 import treatment from "@/assets/studio-treatment.jpeg";
 import beds from "@/assets/studio-beds.jpeg";
@@ -319,13 +319,6 @@ function Home() {
               id="studio-interior-2"
               src={beds}
               alt="A treatment bed at Equà Studio with soft linens and arc lighting"
-              className="w-full rounded-sm object-cover shadow-[var(--shadow-soft)]"
-              loading="lazy"
-            />
-            <img
-              id="service-thumb-brow-lash"
-              src={browLash}
-              alt="Lash lift and brow lamination results by Equà Studio"
               className="w-full rounded-sm object-cover shadow-[var(--shadow-soft)]"
               loading="lazy"
             />
