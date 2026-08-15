@@ -302,7 +302,7 @@ function Home() {
         <div className="mx-auto grid max-w-6xl gap-14 px-5 lg:grid-cols-[1.05fr_1fr]">
           <div>
             <p className="eyebrow">Why Equà</p>
-            <h2 className="mt-3 text-3xl md:text-4xl">The difference is in what we don't do</h2>
+            <h2 className="mt-3 text-3xl md:text-4xl">The difference is in what we do</h2>
             <div className="gold-rule mt-6" />
             <div className="mt-10 grid gap-8 sm:grid-cols-2">
               {trust.map(({ icon: Icon, title, text }) => (
