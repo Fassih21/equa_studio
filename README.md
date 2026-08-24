@@ -101,4 +101,3 @@ This builds the TanStack Start app to `.output/` and deploys the server bundle a
 
 - Match the existing visual language when adding new UI — soft shadows (`shadow-[var(--shadow-soft)]`), muted mauve/cream palette, and `rounded-lg`/bordered image treatments (see the services accordion thumbnails and the testimonial card on the homepage) rather than plain circular avatars.
 - All outbound enquiry actions (booking, consultations) should route through WhatsApp using `STUDIO.whatsapp` from `src/lib/studio.ts`, with a clear, pre-filled message — this keeps the contact flow consistent across the site.
-- Run `npm run lint` and `npm run format` before committing.
