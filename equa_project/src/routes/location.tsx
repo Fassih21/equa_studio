@@ -17,7 +17,7 @@ export const Route = createFileRoute("/location")({
       {
         property: "og:description",
         content:
-          "Ground Floor, 23 Park View, Sector E Commercial, Bahria Town, Lahore. Rated 4.9 by 32 Google reviews.",
+          "Ground Floor, 23 Park View, Sector E Commercial, Bahria Town, Lahore. Rated 4.9 by 36 Google reviews.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/location" },

@@ -17,7 +17,7 @@ export const STUDIO = {
   addressOneLine:
     "Ground Floor, 23, Park View, Sector E Commercial, Bahria Town, Lahore, 54000, Pakistan",
   rating: 4.9,
-  reviewCount: 32,
+  reviewCount: 36,
   hours: "Tuesday to Sunday· 12:00 PM – 7:30 PM",
   mapsDirections:
     "https://www.google.com/maps/dir/?api=1&destination=" +
