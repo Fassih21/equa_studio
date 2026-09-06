@@ -16,6 +16,7 @@ import {
   Images,
 } from "lucide-react";
 import heroImg from "@/assets/hero-lash.png";
+import tourVideo from "@/assets/tour.mp4";
 
 import reception from "@/assets/studio-reception.jpeg";
 import treatment from "@/assets/studio-treatment.jpeg";
@@ -151,14 +152,17 @@ function Home() {
     <>
       {/* HERO */}
       <section className="relative isolate flex min-h-[640px] items-end overflow-hidden md:min-h-[92vh] md:items-center">
-        <img
-          src={treatment}
-          alt="A private treatment room inside Equà Studio, Bahria Town, Lahore"
+        <video
+          src={tourVideo}
+          poster={treatment}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 h-full w-full object-cover object-[75%_center]"
-          loading="eager"
         />
         {/* light-brand overlay: cream fade on mobile (bottom→top), plum/cream fade on desktop (left→right) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/25 md:bg-gradient-to-r md:from-background md:via-background/90 md:to-background/10" />
+       <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/30 to-transparent md:bg-gradient-to-r md:from-background/70 md:via-background/25 md:to-transparent" />
 
         <div className="relative mx-auto w-full max-w-6xl px-5 py-12 md:py-24">
           <div className="fade-up max-w-xl">
