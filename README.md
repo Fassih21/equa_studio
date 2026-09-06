@@ -14,7 +14,7 @@ Marketing website for **Equà Studio** — a premium aesthetics & beauty studio 
 - **React Hook Form** + **Zod** — form handling & validation
 - **Cloudflare Workers** — deployment target (via `wrangler`)
 
-This project was originally scaffolded with [Lovable](https://lovable.dev).
+
 
 ---
 
