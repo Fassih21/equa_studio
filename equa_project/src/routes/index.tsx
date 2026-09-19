@@ -47,7 +47,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Skin, hair, brows and bridal artistry in Bahria Town, Lahore. Rated 4.9 by 38 Google reviews. Book on WhatsApp.",
+          "Skin, hair, brows and bridal artistry in Bahria Town, Lahore. Rated 4.9 by 39 Google reviews. Book on WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
