@@ -28,7 +28,7 @@ Marketing website for **Equà Studio** — a premium aesthetics & beauty studio 
 ### Setup
 
 ```sh
-git clone <this-repository-url>
+git clone https://github.com/Fassih21/equa_studio.git
 cd equa_project
 npm install
 npm run dev
