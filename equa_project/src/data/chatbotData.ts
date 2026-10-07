@@ -55,6 +55,11 @@ export const faqData: FaqEntry[] = [
   },
   {
     keywords: ["what is your location","location", "address", "kahan", "kidhar", "where"],
+    answer: "We're at Ground Floor, Building 23, Park View, Sector E Commercial, Bahria Town, Lahore.",
+  },
+  {
+    keywords: ["what's your services","services", "service", "what do you offer", "kya karte ho"],
     answer: "We offer: Hand & Foot care, SPMU, Brow & Lash, Hair & Scalp treatments, Bridal Artistry, and Facials.",
   },
+
 ];
