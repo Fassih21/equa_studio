@@ -53,4 +53,8 @@ export const faqData: FaqEntry[] = [
     keywords: ["what's your services","services", "service", "what do you offer", "kya karte"],
     answer: "We offer: Hand & Foot care, SPMU, Brow & Lash, Hair & Scalp treatments, Bridal Artistry, and Facials.",
   },
+  {
+    keywords: ["what is your location","location", "address", "kahan", "kidhar", "where"],
+    answer: "We offer: Hand & Foot care, SPMU, Brow & Lash, Hair & Scalp treatments, Bridal Artistry, and Facials.",
+  },
 ];
