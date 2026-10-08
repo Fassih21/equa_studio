@@ -29,6 +29,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link to="/admin" className="text-xs text-muted-foreground/60 hover:text-primary">
+                 Admin
+              </Link>
+            </li>
+            <li>
               <Link to="/location" className="hover:text-primary">
                 Visit the Studio
               </Link>
@@ -85,8 +90,14 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-gold/30">
-        <div className="mx-auto max-w-6xl px-5 py-5 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Equà Studio, Lahore. Premium aesthetics & beauty by Sahrish.
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 text-xs text-muted-foreground">
+          <span>
+            © {new Date().getFullYear()} Equà Studio, Lahore. Premium aesthetics & beauty by
+            Sahrish.
+          </span>
+          <Link to="/admin" className="text-muted-foreground/60 hover:text-primary">
+            Admin
+          </Link>
         </div>
       </div>
     </footer>
