@@ -23,7 +23,7 @@ export const faqData: FaqEntry[] = [
   },
   {
     keywords: ["what are your services","services", "service", "what do you offer", "kya karte"],
-    answer: "We offer: Hand & Foot care, SPMU, Brow & Lash, Hair & Scalp treatments, Bridal Artistry, and Facials.",
+    answer: "We offer: Hand & Foot care, SPMU, Brow & Lash, Hair & Scalp treatments, Bridal Artistry, and Facials or visit our page https://www.equastudio.pk/services.",
   },
   {
     keywords: ["what's your nail service","nails", "manicure", "pedicure", "hand", "foot"],
@@ -61,5 +61,28 @@ export const faqData: FaqEntry[] = [
     keywords: ["what's your services","services", "service", "what do you offer", "kya karte ho"],
     answer: "We offer: Hand & Foot care, SPMU, Brow & Lash, Hair & Scalp treatments, Bridal Artistry, and Facials.",
   },
-
+  {
+    keywords: ["what is your name", "name", "who are you", "kon", "kon ho tum"],
+    answer: "Hi I am Studio assistant , How can i assist you?",
+  },
+  {
+    keywords: ["What is your Offers", "Offers", "Tell me your offers", "offers"],
+    answer: "To avail our offers you can visit offers page on our website or contact us on whatsapp",
+  },
+  {
+    keywords: ["Can i see your before and after results?", "Results", "result", "before vs after", "before", "after"],
+    answer: "For results you can visit our Before Vs After or results page or contact us on whatsapp",
+  },
+  {
+    keywords: ["Who writes your blogs?", "Who writes your journal", "Blogs", "journal", "today news", "news"],
+    answer: "Shahrish(owner) writes blogs and she wrote latest blogs related to self care",
+  },
+  {
+    keywords: ["How are you?", "How's going?", "How's everything?"],
+    answer: "I am doing great, What about you?, How can i help you today?",
+  },
+  {
+  keywords: ["Can you tell me your owner name?", "owner", "owner name"],
+  answer: "Our owner name is Sharish"
+  },
 ];
