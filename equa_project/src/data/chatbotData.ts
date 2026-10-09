@@ -70,6 +70,15 @@ export const faqData: FaqEntry[] = [
     answer: "To avail our offers you can visit offers page on our website or contact us on whatsapp",
   },
   {
-    keywords: ["I can see your before and after results "]
-  }
+    keywords: ["Can i see your before and after results?", "Results", "result", "before vs after", "before", "after"],
+    answer: "For results you can visit our Before Vs After or results page or contact us on whatsapp",
+  },
+  {
+    keywords: ["Who writes your blogs?", "Who writes your journal", "Blogs", "journal", "today news", "news"],
+    answer: "Shahrish(owner) writes blogs and she wrote latest blogs related to self care",
+  },
+  {
+    keywords: ["How are you?", "How's going?", "How's everything?"],
+    answer: "I am doing great, What about you?, How can i help you today?",
+  },
 ];
