@@ -81,4 +81,8 @@ export const faqData: FaqEntry[] = [
     keywords: ["How are you?", "How's going?", "How's everything?"],
     answer: "I am doing great, What about you?, How can i help you today?",
   },
+  {
+  keywords: ["Can you tell me your owner name?", "owner", "owner name"],
+  answer: "Our owner name is Sharish"
+  },
 ];
