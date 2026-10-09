@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppointmentRouteImport } from './routes/appointment'
 import { Route as LocationRouteImport } from './routes/location'
+import { Route as OffersRouteImport } from './routes/offers'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
@@ -44,6 +45,11 @@ const AppointmentRoute = AppointmentRouteImport.update({
 const LocationRoute = LocationRouteImport.update({
   id: '/location',
   path: '/location',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OffersRoute = OffersRouteImport.update({
+  id: '/offers',
+  path: '/offers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/appointment': typeof AppointmentRoute
   '/location': typeof LocationRoute
+  '/offers': typeof OffersRoute
   '/services': typeof ServicesRoute
   '/admin/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/appointment': typeof AppointmentRoute
   '/location': typeof LocationRoute
+  '/offers': typeof OffersRoute
   '/services': typeof ServicesRoute
   '/admin/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/appointment': typeof AppointmentRoute
   '/location': typeof LocationRoute
+  '/offers': typeof OffersRoute
   '/services': typeof ServicesRoute
   '/admin/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/appointment'
     | '/location'
+    | '/offers'
     | '/services'
     | '/admin/login'
     | '/blog/$slug'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/appointment'
     | '/location'
+    | '/offers'
     | '/services'
     | '/admin/login'
     | '/blog/$slug'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/appointment'
     | '/location'
+    | '/offers'
     | '/services'
     | '/admin/login'
     | '/blog/$slug'
@@ -163,6 +175,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   AppointmentRoute: typeof AppointmentRoute
   LocationRoute: typeof LocationRoute
+  OffersRoute: typeof OffersRoute
   ServicesRoute: typeof ServicesRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: '/location'
       fullPath: '/location'
       preLoaderRoute: typeof LocationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offers': {
+      id: '/offers'
+      path: '/offers'
+      fullPath: '/offers'
+      preLoaderRoute: typeof OffersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -270,6 +290,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   AppointmentRoute: AppointmentRoute,
   LocationRoute: LocationRoute,
+  OffersRoute: OffersRoute,
   ServicesRoute: ServicesRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
