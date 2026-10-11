@@ -53,6 +53,19 @@ export const faqData: FaqEntry[] = [
   // SERVICES OVERVIEW
   {
     keywords: [
+      "what's your services?",
+      "Tell me about your services",
+      "What services do you provide?",
+      "What services are available at Equa Studio?",
+      "What treatments can I get at your studio?",
+      "What beauty services do you offer?",
+      "Can you list your services?",
+      "What treatments are available?",
+      "What services can I book with you?",
+      "Can you tell me about your beauty services?",
+      "What treatments do you provide?",
+      "What services are offered at your studio?",
+      "Can you share your service offerings?",
       "What services do you offer?",
       "What services does Equa Studio provide?",
       "Can you tell me about your services?",
