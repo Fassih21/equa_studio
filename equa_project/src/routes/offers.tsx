@@ -105,9 +105,7 @@ function OffersPage() {
                 <ArrowUpRight className="size-4" />
               </Link>
 
-              <span className="text-sm text-muted-foreground">
-                Available 1–10 October 2026
-              </span>
+            
             </div>
           </div>
         </div>
