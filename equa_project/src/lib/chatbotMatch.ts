@@ -1,223 +1,99 @@
+// src/lib/chatbotMatch.ts
+import { faqData, FALLBACK, CHAT_LINK, BOOK_LINK } from "@/data/chatbotData";
 
-import Fuse from "fuse.js";
-import { faqData, type FaqEntry } from "@/data/chatbotData";
+const PRICE_WORDS = new Set(["price", "cost", "rate", "charge", "fee", "much", "kitna", "kitne", "qeemat", "keemat", "qimat", "paisay", "paise", "budget"]);
+const BOOK_WORDS = new Set(["book", "booking", "appointment", "reserve", "slot"]);
 
-type ScoredFaq = {
-  item: FaqEntry;
-  score: number;
-};
+function stem(w: string): string {
+  if (w.length <= 3) return w;
+  if (w.endsWith("ies")) return w.slice(0, -3) + "y";
+  if (/(sh|ch|x|ss)es$/.test(w)) return w.slice(0, -2);
+  return /[^s]s$/.test(w) ? w.slice(0, -1) : w;
+}
 
-const STOP_WORDS = new Set([
-  "a",
-  "an",
-  "the",
-  "is",
-  "are",
-  "am",
-  "do",
-  "does",
-  "did",
-  "can",
-  "could",
-  "would",
-  "will",
-  "me",
-  "my",
-  "your",
-  "you",
-  "i",
-  "we",
-  "our",
-  "us",
-  "please",
-  "tell",
-  "show",
-  "give",
-  "about",
-  "for",
-  "to",
-  "of",
-  "in",
-  "on",
-  "at",
-  "what",
-  "which",
-  "how",
-  "where",
-  "when",
-  "who",
-  "much",
-  "many"
-]);
-
-function normalize(text: string): string {
+function tokenize(text: string): string[] {
   return text
     .toLowerCase()
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/https?:\/\/\S+/g, " ")
-    .replace(/[^\p{L}\p{N}\s]/gu, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function getTokens(text: string): string[] {
-  return normalize(text)
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim()
     .split(" ")
-    .filter((word) => word.length > 0 && !STOP_WORDS.has(word));
+    .filter(Boolean)
+    .map(stem);
 }
 
-function tokenSimilarity(query: string, keyword: string): number {
-  const queryTokens = getTokens(query);
-  const keywordTokens = getTokens(keyword);
-
-  if (queryTokens.length === 0 || keywordTokens.length === 0) {
-    return 0;
-  }
-
-  const matchedTokens = queryTokens.filter((queryToken) =>
-    keywordTokens.some(
-      (keywordToken) =>
-        queryToken === keywordToken ||
-        (queryToken.length >= 4 &&
-          keywordToken.length >= 4 &&
-          (queryToken.startsWith(keywordToken) ||
-            keywordToken.startsWith(queryToken)))
-    )
-  );
-
-  // Measure how much of the user's meaningful query was matched.
-  const queryCoverage = matchedTokens.length / queryTokens.length;
-  const keywordCoverage = matchedTokens.length / keywordTokens.length;
-
-  // Penalize matches that cover only a small part of the query.
-  return (
-    (2 * queryCoverage * keywordCoverage) /
-    (queryCoverage + keywordCoverage || 1)
-  );
-}
-
-const exactKeywordMap = new Map<string, FaqEntry>();
-
-for (const entry of faqData) {
-  for (const keyword of entry.keywords) {
-    const normalizedKeyword = normalize(keyword);
-
-    // Keep the first entry for duplicate keywords.
-    if (!exactKeywordMap.has(normalizedKeyword)) {
-      exactKeywordMap.set(normalizedKeyword, entry);
+function distance(a: string, b: string): number {
+  const prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    let diag = prev[0]!;
+    prev[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const tmp = prev[j]!;
+      prev[j] = Math.min(prev[j]! + 1, prev[j - 1]! + 1, diag + (a[i - 1] === b[j - 1] ? 0 : 1));
+      diag = tmp;
     }
   }
+  return prev[b.length]!;
 }
 
-const fuse = new Fuse(faqData, {
-  keys: ["keywords"],
-  threshold: 0.25,
-  ignoreLocation: true,
-  includeScore: true,
-  minMatchCharLength: 3,
-  shouldSort: true
-});
+// Typo tolerance only for longer words, so short words never match by accident.
+function sameWord(a: string, b: string): boolean {
+  if (a === b) return true;
+  const len = Math.min(a.length, b.length);
+  return len >= 6 && distance(a, b) <= (len >= 8 ? 2 : 1);
+}
 
-const MIN_MATCH_SCORE = 0.72;
-const MIN_SCORE_GAP = 0.08;
-
-const FALLBACK_ANSWER =
-  "Sorry, I couldn't find a reliable answer to that question. " +
-  "Please contact us on WhatsApp at 0329 256 0000 for assistance.";
-
-export function getAnswer(query: string): string {
-  const normalizedQuery = normalize(query);
-
-  if (!normalizedQuery) {
-    return "Please enter a question so I can help you.";
+function containsPhrase(query: string[], phrase: string[]): boolean {
+  for (let i = 0; i + phrase.length <= query.length; i++) {
+    if (phrase.every((w, j) => sameWord(query[i + j]!, w))) return true;
   }
+  return false;
+}
 
-  // 1. Exact match: highest confidence.
-  const exactMatch = exactKeywordMap.get(normalizedQuery);
+const compiled = faqData.map((entry) => ({
+  entry,
+  phrases: entry.keywords.map(tokenize).filter((p) => p.length > 0),
+}));
 
-  if (exactMatch) {
-    return exactMatch.answer;
-  }
+export function getAnswer(rawQuery: string): string {
+  const query = tokenize(rawQuery);
+  if (query.length === 0) return "Please type a question so I can help you.";
 
-  // 2. Match a complete keyword phrase inside a longer question.
-  const phraseMatches: ScoredFaq[] = [];
+  let best: (typeof compiled)[number] | null = null;
+  let bestScore = 0;
 
-  for (const entry of faqData) {
-    for (const keyword of entry.keywords) {
-      const normalizedKeyword = normalize(keyword);
-
-      if (
-        normalizedKeyword.length >= 3 &&
-        normalizedQuery.includes(normalizedKeyword)
-      ) {
-        phraseMatches.push({
-          item: entry,
-          score: normalizedKeyword.length / normalizedQuery.length
-        });
+  for (const item of compiled) {
+    let longest = 0;
+    let hits = 0;
+    for (const phrase of item.phrases) {
+      if (containsPhrase(query, phrase)) {
+        hits++;
+        longest = Math.max(longest, phrase.length);
       }
     }
-  }
-
-  if (phraseMatches.length > 0) {
-    phraseMatches.sort((a, b) => b.score - a.score);
-
-    const best = phraseMatches[0];
-
-    if (!best) {
-      return FALLBACK_ANSWER;
-    }
-
-    const second = phraseMatches.find(
-      (match) => match.item !== best.item
-    );
-
-    // Prefer the most specific phrase, but reject ambiguous matches.
-    if (!second || best.score - second.score >= 0.08) {
-      return best.item.answer;
-    }
-
-    if (best.score >= 0.65) {
-      return best.item.answer;
+    if (hits === 0) continue;
+    // Longer phrases are more specific; treatments beat generic price/booking words.
+    const score = longest + (item.entry.service ? 2 : 0) + (item.entry.boost ?? 0) + 0.1 * (hits - 1);
+    // Strict ">" keeps the earlier entry on ties, so entry order is the tie-break.
+    if (score > bestScore) {
+      best = item;
+      bestScore = score;
     }
   }
 
-  // 3. Fuzzy matching: accept only strong, relevant matches.
-  const fuzzyResults = fuse.search(query.trim());
+  if (!best) return FALLBACK;
 
-  const scoredResults: ScoredFaq[] = fuzzyResults
-    .map(({ item, score }) => {
-      const bestKeywordScore = Math.max(
-        ...item.keywords.map((keyword) =>
-          tokenSimilarity(query, keyword)
-        )
-      );
+  const { answer, service } = best.entry;
+  let text = typeof answer === "function" ? answer() : answer;
 
-      // Fuse score alone is not enough; semantic token overlap is
-      // also required to reduce unrelated answers.
-      const fuseConfidence = 1 - (score ?? 1);
-
-      return {
-        item,
-        score: Math.min(fuseConfidence, bestKeywordScore)
-      };
-    })
-    .sort((a, b) => b.score - a.score);
-
-  const best = scoredResults[0];
-
-  if (!best || best.score < MIN_MATCH_SCORE) {
-    return FALLBACK_ANSWER;
+  if (service) {
+    if (query.some((w) => PRICE_WORDS.has(w))) {
+      text += `\n\nFor the exact price of this treatment, message us on WhatsApp: ${CHAT_LINK}`;
+    }
+    if (query.some((w) => BOOK_WORDS.has(w))) {
+      text += `\n\nReady to book? ${BOOK_LINK}`;
+    }
   }
-
-  const second = scoredResults.find(
-    (result) => result.item !== best.item
-  );
-
-  // If two different FAQ entries are similarly relevant, do not guess.
-  if (second && best.score - second.score < MIN_SCORE_GAP) {
-    return FALLBACK_ANSWER;
-  }
-
-  return best.item.answer;
+  return text;
 }
