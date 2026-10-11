@@ -100,7 +100,13 @@ export const faqData: FaqEntry[] = [
       "What are your weekday timings?",
       "What are your weekend timings?",
       "Can you confirm your opening schedule?",
-      "Until what time are you available?"
+      "Until what time are you available?",
+      "What are your studio hours?",
+      "What's your timing for appointments?",
+      "What are your working hours?",
+      "When can I visit your studio?",
+      "What's your timing ?",
+      "what is your timing ?"
     ],
     answer:
       "Equa Studio is open Tuesday to Sunday, from 12:00 PM to 7:30 PM. We are closed on Mondays. For confirmation, contact us on WhatsApp at https://wa.me/923292560000."
