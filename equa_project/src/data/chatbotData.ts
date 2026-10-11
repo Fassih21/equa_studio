@@ -54,6 +54,7 @@ export const faqData: FaqEntry[] = [
   {
     keywords: [
       "what's your services?",
+      "What is your services?",
       "Tell me about your services",
       "What services do you provide?",
       "What services are available at Equa Studio?",
