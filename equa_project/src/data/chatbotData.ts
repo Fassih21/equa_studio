@@ -131,6 +131,16 @@ export const faqData: FaqEntry[] = [
   // CONTACT INFORMATION
   {
     keywords: [
+      "What is your phone number?",
+      "How can I contact Equa Studio?",
+      "What's your WhatsApp number?",
+      "Can I reach you on WhatsApp?",
+      "What is your contact information?",
+      "What is your email address?",
+      "How can I get in touch with you?",
+      "Can you provide your contact details?",
+      "What's your whatsapp contact?",
+      "What is your WhatsApp contact number?",
       "How can I contact you?",
       "What is your contact number?",
       "Can you share your phone number?",
