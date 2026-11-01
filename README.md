@@ -97,7 +97,5 @@ This builds the TanStack Start app to `.output/` and deploys the server bundle a
 
 ---
 
-## Notes for Contributors
 
-- Match the existing visual language when adding new UI — soft shadows (`shadow-[var(--shadow-soft)]`), muted mauve/cream palette, and `rounded-lg`/bordered image treatments (see the services accordion thumbnails and the testimonial card on the homepage) rather than plain circular avatars.
 
